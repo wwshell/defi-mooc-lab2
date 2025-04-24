@@ -16,14 +16,25 @@
 ## 🔁 实现流程
 
 **1. 借出 USDC（Uniswap V2）**
+
 使用 Flash Swap 机制，从 Uniswap 借出一笔 USDC 资金。
+
 **2. USDC → USDT（Curve）**
+
 调用 Curve 的 3Pool 合约，将 USDC 换为 USDT，用于清算。
+
 **3. 清算 Aave 用户**
+
 - 使用 USDT 帮目标账户偿还部分贷款
+
 - 获得其抵押的 WBTC（清算溢价 + 市场套利）
+
 **4. WBTC → WETH（套利转换）**
+
 通过 SushiSwap 或其他 DEX 将 WBTC 换成 WETH。
+
 **5. 偿还闪电贷 + 获利**
+
 - 计算需要的 WETH 数量，偿还闪电贷
+
 - **剩下的 WETH 即为套利利润**
